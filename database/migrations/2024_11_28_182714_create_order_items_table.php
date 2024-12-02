@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('order_id')->constrained()->onDelete('cascade');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->timestamp('rental_expiration')->nullable;
+            $table->timestamp('rental_expiration')->nullable();
             $table->string('unique_code')->unique();
             $table->timestamps();
         });

@@ -11,12 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->enum('type', ['purchase', 'rental']);
-            $table->decimal('total_price');
-            $table->timestamps();
+        Schema::table('sessions', function (Blueprint $table) {
+            $table->string('ip_address')->nullable()->after('user_id');
         });
     }
 
@@ -25,6 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::table('sessions', function (Blueprint $table) {
+            $table->dropColumn('ip_address');
+        });
     }
 };

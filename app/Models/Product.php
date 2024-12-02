@@ -18,25 +18,24 @@ class Product extends Model implements IProduct
     ];
 
     /**
-     * Returns the rental price per unit of the item.
+     * Get rental price per hour.
      *
      * @return float
      */
 
     public function getRentalPricePerHour(): float
     {
-        return $this->rental_price_per_hour;
+        return $this->attributes['rental_price_per_hour'];
     }
 
     /**
-     * Returns the price of the item for purchase.
+     * Returns the rental price per unit of the item.
      *
      * @return float
      */
-
     public function getPurchasePrice(): float
     {
-        return $this->price;
+        return $this->attributes['price'];
     }
 
     /**
@@ -44,28 +43,32 @@ class Product extends Model implements IProduct
      *
      * @return string
      */
-
     public function getName(): string
     {
-        return $this->name;
+        return $this->attributes['name'];
     }
 
     /**
-     * Sets the price of the item for rent.
+     * Set the rental price per hour.
      *
      * @param float $price
      * @return void
      */
-
     public function setRentalPricePerHour(float $price): void
     {
-        $this->rental_price_per_hour = $price;
+        $this->attributes['rental_price_per_hour'] = $price;
         $this->save();
     }
 
+    /**
+     * Set the purchase price of the product.
+     *
+     * @param float $price
+     * @return void
+     */
     public function setPurchasePrice(float $price): void
     {
-        $this->price = $price;
+        $this->attributes['price'] = $price;
         $this->save();
     }
 }

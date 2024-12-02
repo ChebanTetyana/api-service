@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class OrderItem extends Model
 {
@@ -13,13 +14,15 @@ class OrderItem extends Model
         'unique_code'
     ];
 
-    public function product()
+    public function product(): BelongsTo
     {
-        $this->belongsTo(Product::class);
+       return $this->belongsTo(Product::class);
     }
 
-    public function order()
+    public function order(): BelongsTo
     {
-        $this->belongsTo(Order::class);
+        return $this->belongsTo(Order::class);
     }
+
+    protected array $dates = ['rental_expiration'];
 }
